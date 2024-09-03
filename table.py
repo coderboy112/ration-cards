@@ -6,8 +6,13 @@ from io import StringIO
 # URL for the AJAX request
 def rationCardTables(form_data):
     url = "https://aepos.ap.gov.in/ShopAbstractM.jsp"
+    proxies = {
+    'http': 'http://103.51.21.165:8080',
+    'https': 'http://103.51.21.165:8080',
+    }
+
     # Send POST request to fetch table data
-    response = requests.post(url, data=form_data)
+    response = requests.post(url, data=form_data, proxies=proxies, timeout=30)
     
     # Check if the request was successful
     if response.status_code == 200:
